@@ -192,7 +192,7 @@ Bài viết 2: Tạo một bài viết giới thiệu về những kiến thức
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/70bbc547-5f5a-4924-b94a-3abba6399665" />
 
-**Chuẩn bị n8n để tự động đăng bài lên WordPress**
+## **Chuẩn bị n8n để tự động đăng bài lên WordPress**
 
 Truy cập:https://n8n.luongvanhoc.io.vn
 
@@ -262,6 +262,198 @@ hello
 - Sau khi node nhận được dữ liệu, bên phải màn hình xuất hiện OUTPUT và thông báo:```Node executed successfully```
 - Điều này xác nhận rằng n8n đã kết nối thành công với bot Telegram và sẵn sàng cho các bước xử lý tiếp theo.
 
+## Cấu hình workflow n8n
+
+### Tạo luồng xử lý dữ liệu
+
+Workflow của bạn gồm 4 node chính:
+
+Telegram Trigger → Message a model → Code in JavaScript → WordPress Create a Post
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/4faa9827-8d08-4756-8387-1acb948e6c1f" />
+
+8.4. Cấu hình node Message a model
+Node này dùng để gửi nội dung từ Telegram sang Gemini.
+
+Bước 1: Thêm node
+Bấm dấu + sau Telegram Trigger
+Chọn node Message a model
+
+<img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/4da1bdac-9e32-47e5-a84b-355093d88f8d" />
+
+Bước 2: Chọn credential Gemini
+Trong phần credential:
+
+Chọn hoặc tạo credential Gemini
+Điền API key Gemini
+Lưu lại
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/fffec3bb-e5e3-4869-8ff5-05d2208168ef" />
+
+Bước 3: Chọn model
+Bạn đã dùng model:
+
+Text
+models/gemini-2.5-flash
+Bước 4: Nhập prompt
+Trong ô Prompt, nhập:
+
+Text
+{{ $json.message.text }}. Hãy trả về CHỈ một JSON hợp lệ với 2 trường: post_title và post_content. Không được thêm giải thích, không được bọc trong markdown code block. post_content phải là HTML hoàn chỉnh dùng cho WordPress.
+Ý nghĩa:
+lấy nội dung từ Telegram
+yêu cầu Gemini trả về đúng định dạng JSON
+JSON phải có 2 trường:
+post_title
+post_content
+Bước 5: Chạy thử
+Bấm:
+
+Execute step
+Nếu thành công, Gemini sẽ trả về dữ liệu ở cột OUTPUT.
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a035189c-36b5-44f4-8aa1-8b9f2b0d0b4a" />
+
+8.5. Kiểm tra output của Gemini
+Sau khi chạy node Message a model,thấy output dạng:
+
+JSON
+{
+  "content": {
+    "parts": [
+      {
+        "text": "{\"post_title\":\"...\",\"post_content\":\"...\"}"
+      }
+    ]
+  }
+}
+Điều này có nghĩa là Gemini đang trả về một chuỗi JSON nằm trong:
+
+Text
+content.parts[0].text
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/7c85cdf3-6a60-47f0-8c8a-ad7dcaeb293a" />
+
+8.6. Cấu hình node Code in JavaScript
+Node này dùng để tách JSON mà Gemini trả về thành dữ liệu dễ dùng hơn.
+
+Bước 1: Thêm node Code
+Thêm node Code in JavaScript sau node Gemini
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/064ab991-e5e1-41f7-9e18-d81058a0a66b" />
+Bước 2: Xóa code cũ
+Xóa toàn bộ code đang có trong node Code
+
+Bước 3: Dán code sau
+```
+const rawText = $input.first().json.content.parts[0].text;
+const cleanData = JSON.parse(rawText);
+
+return {
+  title: cleanData.post_title,
+  content: cleanData.post_content
+};
+```
+Giải thích code:
+rawText: lấy chuỗi JSON do Gemini trả về
+JSON.parse(rawText): chuyển chuỗi JSON thành object
+return: trả lại 2 trường:
+title
+content
+Bước 4: Chạy node Code
+Bấm Execute previous nodes
+Bấm Execute step
+Nếu đúng, output sẽ có:
+
+title
+content
+Ví dụ:
+
+title: Bài viết mẫu WordPress cơ bản
+content: nội dung HTML của bài viết
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/840138ee-96b1-4783-9e83-a669e4ba4d7c" />
+
+8.7. Cấu hình WordPress Create a Post
+Node này dùng để đăng bài viết lên WordPress.
+
+Bước 1: Thêm node WordPress
+Chọn node WordPress
+Chọn operation Create a Post
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/0357d84b-5e42-4b61-bc3f-a6f50cd9cc7d" />
+Bước 2: Tạo credential WordPress
+Bấm Set up credential rồi điền:
+
+Username: tên user WordPress thật
+Password: Application Password của WordPress
+WordPress URL: ví dụ
+Text
+https://blog.luongvanhoc.io.vn/
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/df6d7551-fba6-4eed-93cb-73d885acd603" />
+Bước 3: Lưu credential
+Bấm Save
+
+Lưu ý: mật khẩu ở đây không phải mật khẩu đăng nhập thông thường, mà phải là Application Password lấy trong trang profile user WordPress.
+
+8.8. Nếu chưa có Application Password
+Bạn đã kiểm tra trong WordPress như sau:
+
+Bước 1: Vào Users
+Trong WordPress admin:
+
+vào Users
+chọn user admin
+Bước 2: Vào Profile
+Trong trang profile của user admin, tìm mục:
+
+Application Passwords
+Bước 3: Tạo Application Password mới
+nhập tên ví dụ: n8n
+bấm Add New Application Password
+WordPress sẽ sinh ra một chuỗi mật khẩu mới.
+
+Bước 4: Copy chuỗi đó
+Dán chuỗi này vào credential WordPress trong n8n.
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/f47e429e-98a6-4c8e-96f9-72aa882532a5" />
+
+
+
+
+
+8.9. Cấu hình các trường trong node WordPress
+Trong node Create a Post, bạn đã điền:
+
+Title
+Text
+{{$json.title}}
+Content
+Text
+{{$json.content}}
+Status
+Text
+Publish
+Giải thích:
+{{$json.title}}: lấy tiêu đề từ node Code
+{{$json.content}}: lấy nội dung từ node Code
+Publish: đăng bài ngay sau khi tạo
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a4dee60f-bd51-458c-9f00-d376531c355c" />
+Bước 2: Thêm node Google Gemini - Message a Model
+
+
+
+
+
+
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/9d28bfb3-61e9-4bd2-81d8-df5d3fe6140b" />
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/ebfd5b8d-c051-4652-98f2-dd1b645e6595" />
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/39409975-d60e-4307-a031-0d1204bf219b" />
 
 
 
@@ -280,9 +472,8 @@ hello
 
 
 
-# Phân2: Yêu cầu: sau khi có 5 service này trong file docker-compose.yml :
 
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/1d841d9f-839d-4f96-a050-ac4954c5e18a" />
+
 
 
 
