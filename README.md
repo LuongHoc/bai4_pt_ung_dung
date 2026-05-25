@@ -467,7 +467,7 @@ nội dung chát được tự động gửi tới node Telegram trigger => Gử
 
 <img width="1926" height="1036" alt="image" src="https://github.com/user-attachments/assets/ac85a274-5ec5-4b11-a9d5-a8d79e42fe22" />
 
-Kết quả demo:
+Kết quả:
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/d6c08a84-0592-4be9-bcfa-b73f15c86f24" />
 
