@@ -140,24 +140,145 @@ Tạo **n8n.luongvanhoc.io.vn**
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/45593833-cb0f-479b-9d1d-13bdf675d760" />
 
-### Kết quả đạt được
+### Kiểm tra
 
-Sau khi triển khai thành công:
+**Truy cập phpMyAdmin để kiểm tra cơ sở dữ liệu**
+  
+- Truy cập:```https://pma.luongvanhoc.io.vn```
 
-- WordPress hoạt động trên ```blog.luongvanhoc.io.vn```
+- Kết quả mong đợi
+  
+•	CSDL tồn tại
 
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/51c3d0ce-856e-4e9d-95a5-87b820a40477" />
+•	Chưa có bảng dữ liệu nào
 
-- phpMyAdmin hoạt động trên ```pma.luongvanhoc.io.vn```
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/6dc4cff9-4c63-4a88-ac56-a5e0699d3713" />
 
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/c66c781e-fd82-4a67-90c7-e60b45d7c832" />
+**Truy cập WordPress để cài đặt**
 
-- N8n hoạt động trên ```n8n.luongvanhoc.io.vn```
+- Truy cập:```https://blog.luongvanhoc.io.vn```
 
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/d08da49f-7375-46ce-846e-cc5b4c5dfbc0" />
+Sau đó làm theo trình hướng dẫn cài đặt của WordPress:
+
+•	chọn ngôn ngữ
+
+•	đặt tên website
+
+•	tạo tài khoản quản trị
+
+•	đặt mật khẩu
+
+•	hoàn tất cài đặt
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a7f7f762-2a3f-442e-89c6-85efefb7f415" />
+
+Kết quả: WordPress được khởi tạo thành công và có thể đăng nhập vào trang quản trị.
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/59c2370c-7196-4857-9677-ac176cc66fb3" />
+
+**Kiểm tra lại cơ sở dữ liệu sau khi cài WordPress**
+
+Quay lại:```https://pma.luongvanhoc.io.vn```
+
+Kết quả: CSDL đã có bảng dữ liệu, chứng tỏ WordPress đã kết nối thành công với MariaDB.
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/707d350f-1253-4eeb-8367-7bb7b54e8bcb" />
+
+**Tạo các bài viết trên WordPress**
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/f88da0e2-0541-4172-813f-ff29d2ad13ba" />
+
+Bài viết 2: Tạo một bài viết giới thiệu về những kiến thức đã học được trong môn Phát triển ứng dụng với mã nguồn mở.
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/70bbc547-5f5a-4924-b94a-3abba6399665" />
+
+**Chuẩn bị n8n để tự động đăng bài lên WordPress**
+
+Truy cập:https://n8n.luongvanhoc.io.vn
+
+Thực hiện các bước:
+
+•	tạo tài khoản admin
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/1ac87d76-5bab-4400-b5c9-65bab6caf1a2" />
+
+•	Điền khảo sát ban đầu của n8n
+Hệ thống chuyển sang màn hình Customize n8n to you.
+Tôi chọn các mục phù hợp với mục đích học tập cá nhân:
+
+What best describes your company? → chọn Personal use
+Which role best describes you? → chọn Student
+Who will your automations mainly be for? → chọn Myself
+How big is your company? → chọn Just me hoặc mục nhỏ nhất
+How did you hear about n8n? → chọn mục gần nhất như Search engine
+Sau đó bấm Get started để vào giao diện chính của n8n.
+
+Bước 3: Tạo workflow mới
+Tại trang chủ n8n, tôi chọn:
+
+Text
+Start from scratch
+để tạo một workflow trống mới.
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/0548087d-9dc8-4557-bd95-4eca84be8ab9" />
+Bước 4: Thêm node Telegram Trigger
+Trong workflow mới, tôi bấm vào Add first step và tìm node:
+
+Text
+Telegram Trigger
+Sau đó chọn trigger:
+
+Text
+On message
+vì workflow cần chạy khi có tin nhắn mới gửi vào bot Telegram.
+
+
+Bước 5: Cấu hình Telegram credential
+Trong node Telegram Trigger, tôi bấm:
+
+Text
+Set up credential
+rồi nhập Bot Token lấy từ @BotFather trên Telegram.
+
+Sau khi lưu credential, tôi mở bot Telegram của mình và nhắn một tin bất kỳ, ví dụ:
+
+Text
+hello
+Đồng thời bấm Execute step hoặc Test this trigger trong n8n.
+
+Kết quả trả về dữ liệu JSON của tin nhắn Telegram, chứng tỏ node Telegram Trigger hoạt động thành công.
+
+Bước 6: Kiểm tra kết quả
+Sau khi node nhận được dữ liệu, bên phải màn hình xuất hiện OUTPUT và thông báo:
+
+Text
+Node executed successfully
+Điều này xác nhận rằng n8n đã kết nối thành công với bot Telegram và sẵn sàng cho các bước xử lý tiếp theo.
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/fb25a3f1-513a-4e37-a830-f6750cd895fe" />
+
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/b523c9ed-a035-421e-a190-efa7d94e9b46" />
+
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/5d6ba2de-04c7-4e22-a920-3249d12e96d5" />
+
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/994cb786-c101-4d90-8a8a-d224eb71d905" />
 
 
 
+
+
+
+
+
+
+
+
+
+# Phân2: Yêu cầu: sau khi có 5 service này trong file docker-compose.yml :
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/1d841d9f-839d-4f96-a050-ac4954c5e18a" />
 
 
 
