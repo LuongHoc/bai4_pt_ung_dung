@@ -14,14 +14,14 @@ Mục tiêu của phần này là xây dựng một môi trường chạy WordPr
 - Cloudflared
 - N8n
 
-### B1:Chuyển vào thư mục dự án ```wordpress-project```
+## B1:Chuyển vào thư mục dự án ```wordpress-project```
 
 ```
 cd ~/wordpress-project
 ```
 <img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/282b62dc-bfd2-41b2-a279-df1c495ffdd7" />
 
-### B2: Mở file ```docker-compose.yml``` bằng trình soạn thảo nano để chỉnh sửa nội dung
+## B2: Mở file ```docker-compose.yml``` bằng trình soạn thảo nano để chỉnh sửa nội dung
 
 ```
 nano docker-compose.yml
@@ -106,7 +106,9 @@ volumes:
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/d595ac45-6860-4087-b814-68262f0197f3" />
 
-### B4: Thêm public hostname
+# Phân 2:
+
+## 1. Thêm public hostname
 
 - Mở tab Routes Trong tunnel wordpress-tunnel
 
@@ -140,9 +142,8 @@ Tạo **n8n.luongvanhoc.io.vn**
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/45593833-cb0f-479b-9d1d-13bdf675d760" />
 
-### Kiểm tra
 
-**Truy cập phpMyAdmin để kiểm tra cơ sở dữ liệu**
+## 2. Truy cập phpMyAdmin để kiểm tra cơ sở dữ liệu
   
 - Truy cập:```https://pma.luongvanhoc.io.vn```
 
@@ -154,11 +155,11 @@ Tạo **n8n.luongvanhoc.io.vn**
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/6dc4cff9-4c63-4a88-ac56-a5e0699d3713" />
 
-**Truy cập WordPress để cài đặt**
+## 3. Truy cập WordPress để cài đặt
 
-- Truy cập:```https://blog.luongvanhoc.io.vn```
+**B1: Truy cập:```https://blog.luongvanhoc.io.vn```**
 
-Sau đó làm theo trình hướng dẫn cài đặt của WordPress:
+**B2: Sau đó làm theo trình hướng dẫn cài đặt của WordPress:**
 
 •	chọn ngôn ngữ
 
@@ -176,7 +177,7 @@ Kết quả: WordPress được khởi tạo thành công và có thể đăng n
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/59c2370c-7196-4857-9677-ac176cc66fb3" />
 
-**Kiểm tra lại cơ sở dữ liệu sau khi cài WordPress**
+**B3: Kiểm tra lại cơ sở dữ liệu sau khi cài WordPress**
 
 Quay lại:```https://pma.luongvanhoc.io.vn```
 
@@ -184,7 +185,9 @@ Kết quả: CSDL đã có bảng dữ liệu, chứng tỏ WordPress đã kết
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/707d350f-1253-4eeb-8367-7bb7b54e8bcb" />
 
-**Tạo các bài viết trên WordPress**
+**B4: Tạo các bài viết trên WordPress**
+
+Bài viết 1: Giới thiệu về bản thân tôi
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/f88da0e2-0541-4172-813f-ff29d2ad13ba" />
 
@@ -192,21 +195,19 @@ Bài viết 2: Tạo một bài viết giới thiệu về những kiến thức
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/70bbc547-5f5a-4924-b94a-3abba6399665" />
 
-## **Chuẩn bị n8n để tự động đăng bài lên WordPress**
+## 4. Chuẩn bị n8n để tự động đăng bài lên WordPress
 
-Truy cập:https://n8n.luongvanhoc.io.vn
-
-Thực hiện các bước:
+**Truy cập:```https://n8n.luongvanhoc.io.vn```**
 
 B1: Tạo tài khoản admin
 
-Email: luonghoc2604@gmail.com
+- Email: luonghoc2604@gmail.com
 
-First Name: Học
+- First Name: Học
 
-Last Name: Lương
+- Last Name: Lương
 
-Password: Hoc@02062004
+- Password: Hoc@02062004
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/1ac87d76-5bab-4400-b5c9-65bab6caf1a2" />
 
@@ -258,13 +259,10 @@ hello
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/994cb786-c101-4d90-8a8a-d224eb71d905" />
 
 - Kết quả trả về dữ liệu JSON của tin nhắn Telegram, chứng tỏ node Telegram Trigger hoạt động thành công.
-- 
 - Sau khi node nhận được dữ liệu, bên phải màn hình xuất hiện OUTPUT và thông báo:```Node executed successfully```
 - Điều này xác nhận rằng n8n đã kết nối thành công với bot Telegram và sẵn sàng cho các bước xử lý tiếp theo.
 
-## Cấu hình workflow n8n
-
-### Tạo luồng xử lý dữ liệu
+## 5.Tạo luồng xử lý dữ liệu
 
 Workflow của bạn gồm 4 node chính:
 
@@ -272,52 +270,58 @@ Telegram Trigger → Message a model → Code in JavaScript → WordPress Create
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/4faa9827-8d08-4756-8387-1acb948e6c1f" />
 
-8.4. Cấu hình node Message a model
+**5.1. Cấu hình node Message a model**
 Node này dùng để gửi nội dung từ Telegram sang Gemini.
 
-Bước 1: Thêm node
-Bấm dấu + sau Telegram Trigger
-Chọn node Message a model
+Bước 1: Thêm node 
+
+- Bấm dấu + sau Telegram Trigger
+- Chọn node Message a model
 
 <img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/4da1bdac-9e32-47e5-a84b-355093d88f8d" />
 
 Bước 2: Chọn credential Gemini
+
 Trong phần credential:
 
-Chọn hoặc tạo credential Gemini
-Điền API key Gemini
-Lưu lại
+- Chọn hoặc tạo credential Gemini
+- Điền API key Gemini
+- Lưu lại
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/fffec3bb-e5e3-4869-8ff5-05d2208168ef" />
 
 Bước 3: Chọn model
-Bạn đã dùng model:
 
-Text
-models/gemini-2.5-flash
+EM đã dùng model:```models/gemini-2.5-flash```
+
 Bước 4: Nhập prompt
 Trong ô Prompt, nhập:
 
-Text
+```
 {{ $json.message.text }}. Hãy trả về CHỈ một JSON hợp lệ với 2 trường: post_title và post_content. Không được thêm giải thích, không được bọc trong markdown code block. post_content phải là HTML hoàn chỉnh dùng cho WordPress.
+```
 Ý nghĩa:
-lấy nội dung từ Telegram
-yêu cầu Gemini trả về đúng định dạng JSON
-JSON phải có 2 trường:
-post_title
-post_content
-Bước 5: Chạy thử
-Bấm:
+- lấy nội dung từ Telegram
+- yêu cầu Gemini trả về đúng định dạng JSON
+- JSON phải có 2 trường:
 
-Execute step
+post_title
+
+post_content
+
+Bước 5: Chạy thử
+
+Bấm:```Execute step```
+
 Nếu thành công, Gemini sẽ trả về dữ liệu ở cột OUTPUT.
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a035189c-36b5-44f4-8aa1-8b9f2b0d0b4a" />
 
-8.5. Kiểm tra output của Gemini
+**5.2 Kiểm tra output của Gemini**
+
 Sau khi chạy node Message a model,thấy output dạng:
 
-JSON
+```
 {
   "content": {
     "parts": [
@@ -327,14 +331,17 @@ JSON
     ]
   }
 }
+```
 Điều này có nghĩa là Gemini đang trả về một chuỗi JSON nằm trong:
 
-Text
+```
 content.parts[0].text
+```
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/7c85cdf3-6a60-47f0-8c8a-ad7dcaeb293a" />
 
-8.6. Cấu hình node Code in JavaScript
+**5.3. Cấu hình node Code in JavaScript**
+
 Node này dùng để tách JSON mà Gemini trả về thành dữ liệu dễ dùng hơn.
 
 Bước 1: Thêm node Code
@@ -441,6 +448,19 @@ Giải thích:
 Publish: đăng bài ngay sau khi tạo
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a4dee60f-bd51-458c-9f00-d376531c355c" />
+
+
+
+
+
+
+
+
+
+
+
+
+
 Bước 2: Thêm node Google Gemini - Message a Model
 
 
