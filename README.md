@@ -452,9 +452,29 @@ Publish
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a4dee60f-bd51-458c-9f00-d376531c355c" />
 
 
+## Kết quả cuối cùng cần đặt được
 
+- Chát với telegram bot
 
+- Nội dung chat: Hãy viết một bài giới thiệu về lợi ích của việc học lập trình Python cho người mới bắt đầu.
 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/62446d18-b0b0-4c08-8767-501ac0b94aba" />
+
+nội dung chát được tự động gửi tới node Telegram trigger => Gửi tới Google Gemini Message a model (bản chất là gửi Prompt) : Nhận về json kết quả của Prompt => Gửi sang node Code in JavaScript để tách tiêu đề và nội dung 
+=> gửi đến node WordPress để Create a Post(đăng bài) với tiêu đề và nội dung từ node trước gửi sang.
+
+- f5 wordpress để thấy bài viết mới đã lên sóng.
+
+<img width="1926" height="1036" alt="image" src="https://github.com/user-attachments/assets/ac85a274-5ec5-4b11-a9d5-a8d79e42fe22" />
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/d6c08a84-0592-4be9-bcfa-b73f15c86f24" />
+
+## Nhận xét thành quả đạt được
+Sau khi hoàn thành hệ thống, quá trình tạo bài viết đã được tự động hóa từ Telegram sang WordPress một cách hiệu quả. Người dùng chỉ cần gửi nội dung từ điện thoại vào Telegram bot, toàn bộ các bước xử lý phía sau như nhận tin nhắn, tạo prompt bằng Gemini, tách dữ liệu bằng Code node và đăng bài lên WordPress đều được thực hiện tự động.
+
+Kết quả thử nghiệm cho thấy workflow hoạt động đúng như thiết kế, dữ liệu được truyền qua các node ổn định và bài viết được tạo thành công trên website WordPress. Điều này chứng minh hệ thống có thể giảm đáng kể thao tác thủ công, tiết kiệm thời gian và hỗ trợ tạo nội dung nhanh hơn.
+
+Ngoài ra, mô hình còn có tính linh hoạt cao, dễ mở rộng và có thể áp dụng cho nhiều quy trình tự động hóa nội dung khác trong tương lai.
 
 
 
