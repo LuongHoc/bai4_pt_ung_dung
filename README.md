@@ -342,16 +342,18 @@ content.parts[0].text
 
 **5.3. Cấu hình node Code in JavaScript**
 
-Node này dùng để tách JSON mà Gemini trả về thành dữ liệu dễ dùng hơn.
-
 Bước 1: Thêm node Code
+
 Thêm node Code in JavaScript sau node Gemini
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/064ab991-e5e1-41f7-9e18-d81058a0a66b" />
+
 Bước 2: Xóa code cũ
-Xóa toàn bộ code đang có trong node Code
+
+- Xóa toàn bộ code đang có trong node Code
 
 Bước 3: Dán code sau
+
 ```
 const rawText = $input.first().json.content.parts[0].text;
 const cleanData = JSON.parse(rawText);
@@ -361,91 +363,91 @@ return {
   content: cleanData.post_content
 };
 ```
+
 Giải thích code:
-rawText: lấy chuỗi JSON do Gemini trả về
-JSON.parse(rawText): chuyển chuỗi JSON thành object
-return: trả lại 2 trường:
+- rawText: lấy chuỗi JSON do Gemini trả về
+- JSON.parse(rawText): chuyển chuỗi JSON thành object
+- return: trả lại 2 trường:
+
 title
+
 content
+
 Bước 4: Chạy node Code
-Bấm Execute previous nodes
-Bấm Execute step
-Nếu đúng, output sẽ có:
 
-title
-content
-Ví dụ:
+- Bấm Execute previous nodes
+- Bấm Execute step
 
-title: Bài viết mẫu WordPress cơ bản
-content: nội dung HTML của bài viết
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/840138ee-96b1-4783-9e83-a669e4ba4d7c" />
 
-8.7. Cấu hình WordPress Create a Post
+**5.4. Cấu hình WordPress Create a Post**
+
 Node này dùng để đăng bài viết lên WordPress.
 
 Bước 1: Thêm node WordPress
-Chọn node WordPress
-Chọn operation Create a Post
+- Chọn node WordPress
+- Chọn operation Create a Post
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/0357d84b-5e42-4b61-bc3f-a6f50cd9cc7d" />
+
 Bước 2: Tạo credential WordPress
+
 Bấm Set up credential rồi điền:
 
-Username: tên user WordPress thật
-Password: Application Password của WordPress
-WordPress URL: ví dụ
-Text
-https://blog.luongvanhoc.io.vn/
+- Username: admin
+
+- Password: Application Password của WordPress
+
+- WordPress URL: ```https://blog.luongvanhoc.io.vn/```
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/df6d7551-fba6-4eed-93cb-73d885acd603" />
+
 Bước 3: Lưu credential
-Bấm Save
+
+- Bấm Save
 
 Lưu ý: mật khẩu ở đây không phải mật khẩu đăng nhập thông thường, mà phải là Application Password lấy trong trang profile user WordPress.
 
-8.8. Nếu chưa có Application Password
-Bạn đã kiểm tra trong WordPress như sau:
+**5.5. Nếu chưa có Application Password**
 
 Bước 1: Vào Users
-Trong WordPress admin:
+- Trong WordPress admin
+- vào Users
+- chọn user admin
 
-vào Users
-chọn user admin
+<img width="1980" height="1080" alt="image" src="https://github.com/user-attachments/assets/5cf94c63-9b39-4d07-8de7-1b8885a92acb" />
+
 Bước 2: Vào Profile
-Trong trang profile của user admin, tìm mục:
 
-Application Passwords
+- Trong trang profile của user admin, tìm mục:Application Passwords
+
 Bước 3: Tạo Application Password mới
-nhập tên ví dụ: n8n
-bấm Add New Application Password
-WordPress sẽ sinh ra một chuỗi mật khẩu mới.
+- nhập tên: n8n
+- bấm Add New Application Password
+- WordPress sẽ sinh ra một chuỗi mật khẩu mới.
 
 Bước 4: Copy chuỗi đó
-Dán chuỗi này vào credential WordPress trong n8n.
+- Dán chuỗi này vào credential WordPress trong n8n.
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/f47e429e-98a6-4c8e-96f9-72aa882532a5" />
 
+**5.6. Cấu hình các trường trong node WordPress**
 
-
-
-
-8.9. Cấu hình các trường trong node WordPress
-Trong node Create a Post, bạn đã điền:
+Trong node Create a Post điền:
 
 Title
-Text
+```
 {{$json.title}}
+```
 Content
-Text
+```
 {{$json.content}}
+```
 Status
-Text
+```
 Publish
-Giải thích:
-{{$json.title}}: lấy tiêu đề từ node Code
-{{$json.content}}: lấy nội dung từ node Code
-Publish: đăng bài ngay sau khi tạo
+```
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a4dee60f-bd51-458c-9f00-d376531c355c" />
 
@@ -457,23 +459,6 @@ Publish: đăng bài ngay sau khi tạo
 
 
 
-
-
-
-
-Bước 2: Thêm node Google Gemini - Message a Model
-
-
-
-
-
-
-
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/9d28bfb3-61e9-4bd2-81d8-df5d3fe6140b" />
-
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/ebfd5b8d-c051-4652-98f2-dd1b645e6595" />
-
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/39409975-d60e-4307-a031-0d1204bf219b" />
 
 
 
