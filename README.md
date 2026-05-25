@@ -198,72 +198,76 @@ Truy cập:https://n8n.luongvanhoc.io.vn
 
 Thực hiện các bước:
 
-•	tạo tài khoản admin
+B1: Tạo tài khoản admin
+
+Email: luonghoc2604@gmail.com
+
+First Name: Học
+
+Last Name: Lương
+
+Password: Hoc@02062004
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/1ac87d76-5bab-4400-b5c9-65bab6caf1a2" />
 
-•	Điền khảo sát ban đầu của n8n
-Hệ thống chuyển sang màn hình Customize n8n to you.
-Tôi chọn các mục phù hợp với mục đích học tập cá nhân:
+B2: Điền khảo sát ban đầu của n8n
 
-What best describes your company? → chọn Personal use
-Which role best describes you? → chọn Student
-Who will your automations mainly be for? → chọn Myself
-How big is your company? → chọn Just me hoặc mục nhỏ nhất
-How did you hear about n8n? → chọn mục gần nhất như Search engine
+Hệ thống chuyển sang màn hình Customize n8n to you. Chọn các mục phù hợp với mục đích học tập cá nhân:
+
+- What best describes your company? → chọn Personal use
+- Which role best describes you? → chọn Student
+- Who will your automations mainly be for? → chọn Myself
+- How big is your company? → chọn Just me hoặc mục nhỏ nhất
+- How did you hear about n8n? → chọn mục gần nhất như Search engine
+  
 Sau đó bấm Get started để vào giao diện chính của n8n.
 
 Bước 3: Tạo workflow mới
-Tại trang chủ n8n, tôi chọn:
+Tại trang chủ n8n, tôi chọn:```Start from scratch``` để tạo một workflow trống mới.
 
-Text
-Start from scratch
-để tạo một workflow trống mới.
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/0548087d-9dc8-4557-bd95-4eca84be8ab9" />
+
 Bước 4: Thêm node Telegram Trigger
-Trong workflow mới, tôi bấm vào Add first step và tìm node:
-
-Text
-Telegram Trigger
-Sau đó chọn trigger:
-
-Text
-On message
-vì workflow cần chạy khi có tin nhắn mới gửi vào bot Telegram.
-
-
-Bước 5: Cấu hình Telegram credential
-Trong node Telegram Trigger, tôi bấm:
-
-Text
-Set up credential
-rồi nhập Bot Token lấy từ @BotFather trên Telegram.
-
-Sau khi lưu credential, tôi mở bot Telegram của mình và nhắn một tin bất kỳ, ví dụ:
-
-Text
-hello
-Đồng thời bấm Execute step hoặc Test this trigger trong n8n.
-
-Kết quả trả về dữ liệu JSON của tin nhắn Telegram, chứng tỏ node Telegram Trigger hoạt động thành công.
-
-Bước 6: Kiểm tra kết quả
-Sau khi node nhận được dữ liệu, bên phải màn hình xuất hiện OUTPUT và thông báo:
-
-Text
-Node executed successfully
-Điều này xác nhận rằng n8n đã kết nối thành công với bot Telegram và sẵn sàng cho các bước xử lý tiếp theo.
-
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/fb25a3f1-513a-4e37-a830-f6750cd895fe" />
-
+Trong workflow mới, tôi bấm vào ```Add first step``` và tìm node:
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/b523c9ed-a035-421e-a190-efa7d94e9b46" />
 
+- bấm tìm kiếm```Telegram Trigger```
+  
+- Sau đó chọn trigger:```On message``` vì workflow cần chạy khi có tin nhắn mới gửi vào bot Telegram.
+
+Bước 5: Cấu hình Telegram credential
+Trong node Telegram Trigger, tôi bấm:```Set up credential```
+
+
+
+<img width="1904" height="1040" alt="image" src="https://github.com/user-attachments/assets/f1050fb5-644c-498a-b80d-da8f47a8c749" />
+
+rồi nhập Bot Token lấy từ @BotFather trên Telegram.
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/5d6ba2de-04c7-4e22-a920-3249d12e96d5" />
 
+Sau khi lưu credential, tôi mở bot Telegram của mình và nhắn một tin bất kỳ, ví dụ:
+```
+hello
+```
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/9c806dba-33e1-47b5-957d-240ad4051b53" />
+
+Đồng thời bấm Execute step trong n8n.
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/994cb786-c101-4d90-8a8a-d224eb71d905" />
+
+- Kết quả trả về dữ liệu JSON của tin nhắn Telegram, chứng tỏ node Telegram Trigger hoạt động thành công.
+- 
+- Sau khi node nhận được dữ liệu, bên phải màn hình xuất hiện OUTPUT và thông báo:```Node executed successfully```
+- Điều này xác nhận rằng n8n đã kết nối thành công với bot Telegram và sẵn sàng cho các bước xử lý tiếp theo.
+
+
+
+
+
+
+
 
 
 
